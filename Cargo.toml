@@ -1,0 +1,44 @@
+[package]
+name = "rustchatpro"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# WebSocket support
+tokio-tungstenite = { version = "0.21", features = ["native-tls"] }
+
+# Futures utilities
+futures-util = "0.3"
+
+# Concurrent hash map
+dashmap = "5"
+
+# Serialization framework
+serde = { version = "1", features = ["derive"] }
+
+# Binary serialization
+bincode = "1"
+
+# SQLite async driver
+sqlx = { version = "0.7", features = ["sqlite", "runtime-tokio-native-tls", "macros"] }
+
+# Structured logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Unique IDs
+uuid = { version = "1", features = ["v4"] }
+
+# Timestamps
+chrono = { version = "0.4", features = ["serde"] }
+
+# Error handling
+anyhow = "1"
+
+# Encryption
+aes-gcm = "0.10"
+rand = "0.8"
