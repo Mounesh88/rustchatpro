@@ -811,3 +811,150 @@
 2026-03-24T23:49:50.106728Z  INFO ThreadId(04) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=2
 2026-03-24T23:50:20.093557Z  INFO ThreadId(15) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=2
 2026-03-24T23:50:20.094267Z  INFO ThreadId(15) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=2
+2026-03-25T02:12:49.960481Z  INFO ThreadId(01) rustchatpro: src\main.rs:21: Starting RustChatPro version="0.9"
+2026-03-25T02:12:49.964688Z  INFO ThreadId(01) rustchatpro::db: src\db.rs:55: Database initialized — chat.db ready
+2026-03-25T02:12:49.964834Z  INFO ThreadId(01) rustchatpro: src\main.rs:28: All systems initialized — starting server
+2026-03-25T02:12:49.964986Z  INFO ThreadId(06) rustchatpro::heartbeat: src\heartbeat.rs:15: Heartbeat task started — pinging every 30s
+2026-03-25T02:12:49.966736Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:23: HTTP server on http://127.0.0.1:8080
+2026-03-25T02:12:49.966866Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:24: WebSocket server on ws://127.0.0.1:8081
+2026-03-25T02:12:49.967047Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:25: TCP server on 127.0.0.1:8082
+2026-03-25T02:12:49.967172Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:26: Open http://127.0.0.1:8080 in your browser
+2026-03-25T02:12:49.969075Z  INFO ThreadId(02) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=0
+2026-03-25T02:12:49.969330Z  INFO ThreadId(02) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=0
+2026-03-25T02:13:02.274594Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:96: new connection peer_addr=127.0.0.1:63308 protocol="http"
+2026-03-25T02:13:03.166167Z  INFO ThreadId(15) rustchatpro::server: src\server.rs:43: new connection peer_addr=127.0.0.1:53265 protocol="websocket"
+2026-03-25T02:13:03.167572Z  INFO ThreadId(15) rustchatpro::server: src\server.rs:151: WebSocket handshake complete
+2026-03-25T02:13:03.171389Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:96: new connection peer_addr=127.0.0.1:63429 protocol="http"
+2026-03-25T02:13:03.691806Z  INFO ThreadId(02) rustchatpro::room: src\room.rs:29: client joined room client_id=755deb6f-9f9a-43ca-bdcf-4d8f5f4e98e1 room=lobby
+2026-03-25T02:13:03.692439Z  INFO ThreadId(02) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=755deb6f-9f9a-43ca-bdcf-4d8f5f4e98e1 old_room=lobby new_room=lobby event="room_join"
+2026-03-25T02:13:06.172688Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:96: new connection peer_addr=127.0.0.1:61469 protocol="http"
+2026-03-25T02:13:07.058800Z  INFO ThreadId(15) rustchatpro::server: src\server.rs:43: new connection peer_addr=127.0.0.1:63741 protocol="websocket"
+2026-03-25T02:13:07.059653Z  INFO ThreadId(15) rustchatpro::server: src\server.rs:151: WebSocket handshake complete
+2026-03-25T02:13:07.062880Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:96: new connection peer_addr=127.0.0.1:49666 protocol="http"
+2026-03-25T02:13:07.576295Z  INFO ThreadId(02) rustchatpro::room: src\room.rs:29: client joined room client_id=2993c07d-7321-4f6f-bd46-f14e7572fdca room=lobby
+2026-03-25T02:13:07.577094Z  INFO ThreadId(02) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=2993c07d-7321-4f6f-bd46-f14e7572fdca old_room=lobby new_room=lobby event="room_join"
+2026-03-25T02:13:09.377337Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:96: new connection peer_addr=127.0.0.1:53389 protocol="http"
+2026-03-25T02:13:10.414076Z  INFO ThreadId(06) rustchatpro::server: src\server.rs:43: new connection peer_addr=127.0.0.1:60442 protocol="websocket"
+2026-03-25T02:13:10.414987Z  INFO ThreadId(06) rustchatpro::server: src\server.rs:151: WebSocket handshake complete
+2026-03-25T02:13:10.420149Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:96: new connection peer_addr=127.0.0.1:55482 protocol="http"
+2026-03-25T02:13:10.937634Z  INFO ThreadId(02) rustchatpro::room: src\room.rs:29: client joined room client_id=a4461556-ef32-4435-a2c1-7063db8b6a53 room=lobby
+2026-03-25T02:13:10.938669Z  INFO ThreadId(02) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=a4461556-ef32-4435-a2c1-7063db8b6a53 old_room=lobby new_room=lobby event="room_join"
+2026-03-25T02:13:12.719701Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:96: new connection peer_addr=127.0.0.1:49213 protocol="http"
+2026-03-25T02:13:13.858884Z  INFO ThreadId(05) rustchatpro::server: src\server.rs:43: new connection peer_addr=127.0.0.1:55792 protocol="websocket"
+2026-03-25T02:13:13.860096Z  INFO ThreadId(05) rustchatpro::server: src\server.rs:151: WebSocket handshake complete
+2026-03-25T02:13:13.863715Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:96: new connection peer_addr=127.0.0.1:61330 protocol="http"
+2026-03-25T02:13:14.387434Z  INFO ThreadId(15) rustchatpro::room: src\room.rs:29: client joined room client_id=fdbf232b-b1de-41d8-81fd-da8b7a4eaeea room=lobby
+2026-03-25T02:13:14.388745Z  INFO ThreadId(15) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=fdbf232b-b1de-41d8-81fd-da8b7a4eaeea old_room=lobby new_room=lobby event="room_join"
+2026-03-25T02:13:19.967495Z  INFO ThreadId(15) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T02:13:19.969787Z  INFO ThreadId(15) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
+2026-03-25T02:13:44.027729Z  INFO ThreadId(15) rustchatpro::ws_handler: src\ws_handler.rs:272: websocket message received client_id=755deb6f-9f9a-43ca-bdcf-4d8f5f4e98e1 room=lobby content_len=39 encrypted=true event="message_received"
+2026-03-25T02:13:49.967715Z  INFO ThreadId(05) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T02:13:49.970489Z  INFO ThreadId(05) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
+2026-03-25T02:14:19.973369Z  INFO ThreadId(02) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T02:14:19.975186Z  INFO ThreadId(02) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
+2026-03-25T02:14:49.973541Z  INFO ThreadId(05) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T02:14:49.975802Z  INFO ThreadId(05) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
+2026-03-25T02:15:19.970788Z  INFO ThreadId(05) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T02:15:19.973467Z  INFO ThreadId(05) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
+2026-03-25T02:15:49.968296Z  INFO ThreadId(12) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T02:15:49.968937Z  INFO ThreadId(12) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
+2026-03-25T02:16:19.972696Z  INFO ThreadId(06) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T02:16:19.973782Z  INFO ThreadId(06) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
+2026-03-25T04:23:38.373365Z  INFO ThreadId(01) rustchatpro: src\main.rs:21: Starting RustChatPro version="0.9"
+2026-03-25T04:23:38.378061Z  INFO ThreadId(01) rustchatpro::db: src\db.rs:55: Database initialized — chat.db ready
+2026-03-25T04:23:38.378417Z  INFO ThreadId(01) rustchatpro: src\main.rs:28: All systems initialized — starting server
+2026-03-25T04:23:38.378758Z  INFO ThreadId(13) rustchatpro::heartbeat: src\heartbeat.rs:15: Heartbeat task started — pinging every 30s
+2026-03-25T04:23:38.381792Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:23: HTTP server on http://127.0.0.1:8080
+2026-03-25T04:23:38.382108Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:24: WebSocket server on ws://127.0.0.1:8081
+2026-03-25T04:23:38.382374Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:25: TCP server on 127.0.0.1:8082
+2026-03-25T04:23:38.382657Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:26: Open http://127.0.0.1:8080 in your browser
+2026-03-25T04:23:38.389393Z  INFO ThreadId(02) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=0
+2026-03-25T04:23:38.389627Z  INFO ThreadId(02) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=0
+2026-03-25T16:50:29.108824Z  INFO ThreadId(01) rustchatpro: src\main.rs:21: Starting RustChatPro version="0.9"
+2026-03-25T16:50:29.121065Z  INFO ThreadId(01) rustchatpro::db: src\db.rs:55: Database initialized — chat.db ready
+2026-03-25T16:50:29.121524Z  INFO ThreadId(01) rustchatpro: src\main.rs:28: All systems initialized — starting server
+2026-03-25T16:50:29.124285Z  INFO ThreadId(13) rustchatpro::heartbeat: src\heartbeat.rs:15: Heartbeat task started — pinging every 30s
+2026-03-25T16:50:29.124853Z  INFO ThreadId(03) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=0
+2026-03-25T16:50:29.125150Z  INFO ThreadId(03) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=0
+2026-03-25T16:50:29.127030Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:23: HTTP server on http://127.0.0.1:8080
+2026-03-25T16:50:29.128039Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:24: WebSocket server on ws://127.0.0.1:8081
+2026-03-25T16:50:29.128930Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:25: TCP server on 127.0.0.1:8082
+2026-03-25T16:50:29.130488Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:26: Open http://127.0.0.1:8080 in your browser
+2026-03-25T16:50:46.141641Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:96: new connection peer_addr=127.0.0.1:56866 protocol="http"
+2026-03-25T16:50:46.991598Z  INFO ThreadId(03) rustchatpro::server: src\server.rs:43: new connection peer_addr=127.0.0.1:58639 protocol="websocket"
+2026-03-25T16:50:46.993215Z  INFO ThreadId(03) rustchatpro::server: src\server.rs:151: WebSocket handshake complete
+2026-03-25T16:50:47.007179Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:96: new connection peer_addr=127.0.0.1:65442 protocol="http"
+2026-03-25T16:50:47.520749Z  INFO ThreadId(12) rustchatpro::room: src\room.rs:29: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c room=lobby
+2026-03-25T16:50:47.521876Z  INFO ThreadId(12) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c old_room=lobby new_room=lobby event="room_join"
+2026-03-25T16:50:49.445781Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:96: new connection peer_addr=127.0.0.1:60895 protocol="http"
+2026-03-25T16:50:50.231175Z  INFO ThreadId(03) rustchatpro::server: src\server.rs:43: new connection peer_addr=127.0.0.1:60117 protocol="websocket"
+2026-03-25T16:50:50.232089Z  INFO ThreadId(03) rustchatpro::server: src\server.rs:151: WebSocket handshake complete
+2026-03-25T16:50:50.242593Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:96: new connection peer_addr=127.0.0.1:49919 protocol="http"
+2026-03-25T16:50:50.767038Z  INFO ThreadId(12) rustchatpro::room: src\room.rs:29: client joined room client_id=53df8365-503b-495f-8d89-e9260bea055c room=lobby
+2026-03-25T16:50:50.769039Z  INFO ThreadId(12) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=53df8365-503b-495f-8d89-e9260bea055c old_room=lobby new_room=lobby event="room_join"
+2026-03-25T16:50:52.552609Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:96: new connection peer_addr=127.0.0.1:53638 protocol="http"
+2026-03-25T16:50:53.052834Z  INFO ThreadId(03) rustchatpro::server: src\server.rs:43: new connection peer_addr=127.0.0.1:53939 protocol="websocket"
+2026-03-25T16:50:53.053997Z  INFO ThreadId(03) rustchatpro::server: src\server.rs:151: WebSocket handshake complete
+2026-03-25T16:50:53.063410Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:96: new connection peer_addr=127.0.0.1:61346 protocol="http"
+2026-03-25T16:50:53.582807Z  INFO ThreadId(12) rustchatpro::room: src\room.rs:29: client joined room client_id=f6e14f1d-e8ef-41f4-960a-5137a52bf803 room=lobby
+2026-03-25T16:50:53.584842Z  INFO ThreadId(12) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=f6e14f1d-e8ef-41f4-960a-5137a52bf803 old_room=lobby new_room=lobby event="room_join"
+2026-03-25T16:50:55.952722Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:96: new connection peer_addr=127.0.0.1:59656 protocol="http"
+2026-03-25T16:50:56.773110Z  INFO ThreadId(03) rustchatpro::server: src\server.rs:43: new connection peer_addr=127.0.0.1:53730 protocol="websocket"
+2026-03-25T16:50:56.774374Z  INFO ThreadId(03) rustchatpro::server: src\server.rs:151: WebSocket handshake complete
+2026-03-25T16:50:56.784718Z  INFO ThreadId(01) rustchatpro::server: src\server.rs:96: new connection peer_addr=127.0.0.1:60540 protocol="http"
+2026-03-25T16:50:57.306482Z  INFO ThreadId(14) rustchatpro::room: src\room.rs:29: client joined room client_id=ce191505-ca46-46a7-bf20-b52861da3805 room=lobby
+2026-03-25T16:50:57.307472Z  INFO ThreadId(14) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=ce191505-ca46-46a7-bf20-b52861da3805 old_room=lobby new_room=lobby event="room_join"
+2026-03-25T16:50:59.126447Z  INFO ThreadId(03) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T16:50:59.128012Z  INFO ThreadId(03) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
+2026-03-25T16:51:29.128760Z  INFO ThreadId(15) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T16:51:29.137985Z  INFO ThreadId(15) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
+2026-03-25T16:51:53.543431Z  INFO ThreadId(03) rustchatpro::ws_handler: src\ws_handler.rs:272: websocket message received client_id=e4a7c415-5282-41d5-a96e-442db68ded5c room=lobby content_len=20 encrypted=true event="message_received"
+2026-03-25T16:51:59.131986Z  INFO ThreadId(15) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T16:51:59.134733Z  INFO ThreadId(15) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
+2026-03-25T16:52:12.535382Z  INFO ThreadId(15) rustchatpro::room: src\room.rs:29: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c room=rust
+2026-03-25T16:52:12.537051Z  INFO ThreadId(15) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c old_room=lobby new_room=rust event="room_join"
+2026-03-25T16:52:16.159795Z  INFO ThreadId(15) rustchatpro::room: src\room.rs:29: client joined room client_id=f6e14f1d-e8ef-41f4-960a-5137a52bf803 room=rust
+2026-03-25T16:52:16.162677Z  INFO ThreadId(15) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=f6e14f1d-e8ef-41f4-960a-5137a52bf803 old_room=lobby new_room=rust event="room_join"
+2026-03-25T16:52:21.790481Z  INFO ThreadId(14) rustchatpro::room: src\room.rs:29: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c room=rust
+2026-03-25T16:52:21.792125Z  INFO ThreadId(14) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c old_room=rust new_room=rust event="room_join"
+2026-03-25T16:52:22.991716Z  INFO ThreadId(12) rustchatpro::room: src\room.rs:29: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c room=rust
+2026-03-25T16:52:22.993132Z  INFO ThreadId(12) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c old_room=rust new_room=rust event="room_join"
+2026-03-25T16:52:24.030570Z  INFO ThreadId(14) rustchatpro::room: src\room.rs:29: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c room=rust
+2026-03-25T16:52:24.032370Z  INFO ThreadId(14) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c old_room=rust new_room=rust event="room_join"
+2026-03-25T16:52:25.327081Z  INFO ThreadId(15) rustchatpro::room: src\room.rs:29: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c room=rust
+2026-03-25T16:52:25.343236Z  INFO ThreadId(15) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c old_room=rust new_room=rust event="room_join"
+2026-03-25T16:52:26.446744Z  INFO ThreadId(14) rustchatpro::room: src\room.rs:29: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c room=rust
+2026-03-25T16:52:26.449672Z  INFO ThreadId(14) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c old_room=rust new_room=rust event="room_join"
+2026-03-25T16:52:28.425861Z  INFO ThreadId(15) rustchatpro::room: src\room.rs:29: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c room=rust
+2026-03-25T16:52:28.428403Z  INFO ThreadId(15) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c old_room=rust new_room=rust event="room_join"
+2026-03-25T16:52:29.138735Z  INFO ThreadId(14) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T16:52:29.143488Z  INFO ThreadId(14) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
+2026-03-25T16:52:30.398287Z  INFO ThreadId(12) rustchatpro::room: src\room.rs:29: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c room=rust
+2026-03-25T16:52:30.402931Z  INFO ThreadId(12) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c old_room=rust new_room=rust event="room_join"
+2026-03-25T16:52:31.526474Z  INFO ThreadId(15) rustchatpro::room: src\room.rs:29: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c room=rust
+2026-03-25T16:52:31.529555Z  INFO ThreadId(15) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c old_room=rust new_room=rust event="room_join"
+2026-03-25T16:52:59.128028Z  INFO ThreadId(14) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T16:52:59.129247Z  INFO ThreadId(15) rustchatpro::ws_handler: src\ws_handler.rs:272: websocket message received client_id=e4a7c415-5282-41d5-a96e-442db68ded5c room=rust content_len=40 encrypted=true event="message_received"
+2026-03-25T16:52:59.129613Z  INFO ThreadId(14) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
+2026-03-25T16:53:17.078004Z  INFO ThreadId(12) rustchatpro::room: src\room.rs:29: client joined room client_id=53df8365-503b-495f-8d89-e9260bea055c room=general
+2026-03-25T16:53:17.079031Z  INFO ThreadId(12) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=53df8365-503b-495f-8d89-e9260bea055c old_room=lobby new_room=general event="room_join"
+2026-03-25T16:53:20.679286Z  INFO ThreadId(12) rustchatpro::room: src\room.rs:29: client joined room client_id=ce191505-ca46-46a7-bf20-b52861da3805 room=general
+2026-03-25T16:53:20.680742Z  INFO ThreadId(12) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=ce191505-ca46-46a7-bf20-b52861da3805 old_room=lobby new_room=general event="room_join"
+2026-03-25T16:53:29.136580Z  INFO ThreadId(14) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T16:53:29.143944Z  INFO ThreadId(14) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
+2026-03-25T16:53:59.128294Z  INFO ThreadId(12) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T16:53:59.132396Z  INFO ThreadId(12) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
+2026-03-25T16:54:08.107576Z  INFO ThreadId(14) rustchatpro::ws_handler: src\ws_handler.rs:272: websocket message received client_id=53df8365-503b-495f-8d89-e9260bea055c room=general content_len=43 encrypted=true event="message_received"
+2026-03-25T16:54:27.683488Z  INFO ThreadId(12) rustchatpro::room: src\room.rs:29: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c room=python
+2026-03-25T16:54:27.685089Z  INFO ThreadId(12) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=e4a7c415-5282-41d5-a96e-442db68ded5c old_room=rust new_room=python event="room_join"
+2026-03-25T16:54:29.128904Z  INFO ThreadId(12) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T16:54:29.130790Z  INFO ThreadId(12) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
+2026-03-25T16:54:31.873985Z  INFO ThreadId(15) rustchatpro::room: src\room.rs:29: client joined room client_id=ce191505-ca46-46a7-bf20-b52861da3805 room=python
+2026-03-25T16:54:31.875440Z  INFO ThreadId(15) rustchatpro::ws_handler: src\ws_handler.rs:209: client joined room client_id=ce191505-ca46-46a7-bf20-b52861da3805 old_room=general new_room=python event="room_join"
+2026-03-25T16:54:59.132267Z  INFO ThreadId(14) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T16:54:59.133706Z  INFO ThreadId(14) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
+2026-03-25T16:54:59.383098Z  INFO ThreadId(15) rustchatpro::ws_handler: src\ws_handler.rs:272: websocket message received client_id=e4a7c415-5282-41d5-a96e-442db68ded5c room=python content_len=40 encrypted=true event="message_received"
+2026-03-25T16:55:29.140650Z  INFO ThreadId(15) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T16:55:29.145802Z  INFO ThreadId(15) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
+2026-03-25T16:55:59.137913Z  INFO ThreadId(15) rustchatpro::heartbeat: src\heartbeat.rs:21: heartbeat tick client_count=4
+2026-03-25T16:55:59.139166Z  INFO ThreadId(15) rustchatpro::heartbeat: src\heartbeat.rs:53: heartbeat complete alive_count=4
