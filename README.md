@@ -2,74 +2,239 @@
 
 [![CI](https://github.com/YOUR_USERNAME/rustchatpro/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/rustchatpro/actions/workflows/ci.yml)
 
-A modern, multi-client chat platform built entirely in Rust.
+# 🚀 RustChatPro — High-Performance Real-Time Chat System
 
-## Features
+## 📌 Project Overview
 
-- Real-time messaging with Tokio async runtime
-- Multiple chat rooms with isolation
-- Private direct messaging
-- End-to-end encryption with AES-256-GCM
-- SQLite message persistence
-- WebSocket browser client
-- Connection heartbeat monitoring
-- Structured logging with tracing
+**RustChatPro** is a high-performance, real-time chat server built using **Rust**, designed to demonstrate modern backend engineering principles such as **asynchronous programming**, **low-latency communication**, and **scalable system design**.
 
-## Architecture
+The system leverages **WebSockets** for bi-directional communication and the **Tokio async runtime** to efficiently manage multiple concurrent clients. It includes production-oriented features like **heartbeat monitoring**, **structured logging**, and **room-based messaging**.
 
-| Component | Technology |
-|-----------|------------|
-| Async runtime | Tokio |
-| Concurrency | DashMap |
-| Serialization | Bincode + Serde |
-| Database | SQLite + SQLx |
-| Encryption | AES-256-GCM |
-| WebSocket | tokio-tungstenite |
-| Logging | tracing + tracing-subscriber |
+This project reflects a strong focus on **performance, reliability, and observability**—key aspects of real-world backend systems.
 
-## Running
+---
+
+## 🔥 Key Features
+
+### ⚡ High Performance
+
+* Built with Rust for memory safety and zero-cost abstractions
+* Efficient async execution using Tokio
+* Low-latency real-time message delivery
+
+### 🛡️ Safety & Reliability
+
+* Strong type system ensures compile-time guarantees
+* Safe concurrency without data races
+* Graceful handling of client connections and disconnections
+
+### 🧵 Concurrency & Scalability
+
+* Handles multiple clients concurrently using async/await
+* Non-blocking I/O for optimal resource utilization
+* Designed to scale with increasing client load
+
+### 🔌 Real-Time Communication
+
+* WebSocket-based full-duplex communication
+* Instant message broadcasting across connected clients
+
+### 🏠 Room-Based Messaging
+
+* Logical grouping of users into rooms (e.g., `lobby`)
+* Scoped message delivery within rooms
+
+### ❤️ Heartbeat Monitoring
+
+* Periodic health checks for connected clients
+* Automatic detection and cleanup of inactive connections
+
+### 📊 Observability & Logging
+
+* Structured logging with timestamps and thread IDs
+* File-based logs (`logs/server.log`) for debugging and monitoring
+* Real-time logs available via console output
+
+### 🗄️ Persistence Layer
+
+* SQLite integration (`chat.db`) for extendable data storage
+* Foundation for message history and user tracking
+
+### ⚙️ CI/CD Integration
+
+* GitHub Actions pipeline for automated builds and tests
+* Ensures code quality and reliability
+
+---
+
+## 🛠️ Technology Stack
+
+| Component     | Technology                   |
+| ------------- | ---------------------------- |
+| Language      | Rust                         |
+| Async Runtime | Tokio                        |
+| Communication | WebSockets                   |
+| Database      | SQLite                       |
+| Logging       | Tracing / Structured Logging |
+| Frontend      | HTML (Minimal UI)            |
+| CI/CD         | GitHub Actions               |
+
+---
+
+## 🚀 Quick Start
+
+### 🔹 Prerequisites
+
+* Install Rust: https://www.rust-lang.org/tools/install
+
+---
+
+### 🔹 Clone the Repository
+
 ```bash
-# Start the server
-RUST_LOG=info cargo run
-
-# Open browser client
-open http://127.0.0.1:8080
-
-# Connect telnet client
-telnet 127.0.0.1 8082
+git clone https://github.com/Mounesh88/rustchatpro.git
+cd rustchatpro
 ```
 
-## Testing
+---
+
+### 🔹 Run the Server
+
 ```bash
-cargo test
+cargo run
 ```
 
-## Project Structure
+You should see:
+
 ```
-src/
-├── main.rs         # Entry point
-├── server.rs       # TCP/WS/HTTP listeners
-├── client.rs       # TCP client handler
-├── ws_handler.rs   # WebSocket handler
-├── room.rs         # Room management
-├── types.rs        # Shared data types
-├── crypto.rs       # AES-256-GCM encryption
-├── db.rs           # SQLite persistence
-├── heartbeat.rs    # Connection health
-├── logging.rs      # Structured logging
-└── tests.rs        # Unit tests
-static/
-└── index.html      # Browser chat UI
-logs/
-└── server.log      # Server log file
+Open http://127.0.0.1:8080 in your browser
 ```
 
-## Commands
+---
 
-| Command | Description |
-|---------|-------------|
-| `/join <room>` | Join a chat room |
-| `/msg <id> <text>` | Send private message |
-| `/rooms` | List active rooms |
-| `/history` | Load message history |
-| `/quit` | Disconnect |
+### 🔹 Access the Application
+
+Open your browser:
+
+```
+http://127.0.0.1:8080
+```
+
+---
+
+### 🔹 Test Real-Time Chat
+
+1. Open multiple browser tabs
+2. Send messages from different tabs
+3. Observe real-time updates across clients
+
+---
+
+## 🧠 Architecture
+
+```
+           ┌────────────────────┐
+           │     Browser UI     │
+           │  (Multiple Tabs)   │
+           └─────────┬──────────┘
+                     │
+                     ▼
+           ┌────────────────────┐
+           │   WebSocket Layer  │
+           │  (Full Duplex I/O) │
+           └─────────┬──────────┘
+                     │
+                     ▼
+        ┌─────────────────────────────┐
+        │     Tokio Async Runtime     │
+        │ (Concurrent Task Handling)  │
+        └───────┬─────────┬───────────┘
+                │         │
+                ▼         ▼
+        ┌──────────┐  ┌──────────────┐
+        │  Rooms   │  │  Heartbeat   │
+        │ Manager  │  │  Monitoring  │
+        └────┬─────┘  └──────┬───────┘
+             │               │
+             ▼               ▼
+        ┌──────────┐   ┌────────────┐
+        │ Shared   │   │  Logging   │
+        │ State    │   │  System    │
+        └──────────┘   └────────────┘
+               │
+               ▼
+        ┌──────────────┐
+        │   SQLite DB  │
+        │  (chat.db)   │
+        └──────────────┘
+```
+
+---
+
+## 📂 Project Structure
+
+```
+rustchatpro/
+├── src/
+│   ├── main.rs
+│   ├── server.rs
+│   ├── ws_handler.rs
+│   ├── room.rs
+│   ├── heartbeat.rs
+│   ├── db.rs
+│   ├── logging.rs
+│   └── types.rs
+│
+├── static/
+│   └── index.html
+│
+├── logs/
+│   └── server.log
+│
+├── chat.db
+├── Cargo.toml
+└── README.md
+```
+
+---
+
+## 📊 Example Logs
+
+```
+heartbeat tick client_count=4
+heartbeat complete alive_count=4
+WebSocket handshake complete
+client joined room
+```
+
+---
+
+## ⚠️ Notes
+
+* Log file output may be **buffered**; real-time logs are visible in the terminal
+* Ensure port `8080` is available before running the server
+
+---
+
+## 🔮 Future Enhancements
+
+* 🔐 JWT-based authentication
+* 🌐 Cloud deployment (AWS / Azure)
+* 📦 Docker containerization
+* ⚡ Redis for pub/sub scaling
+* 📊 Admin dashboard for monitoring
+* 💬 Message persistence and history APIs
+
+---
+
+## 💼 Author
+
+**Mounesh Rayalla**
+Master’s in Computer Science
+Focus: Cloud, AI/ML, Backend Engineering
+
+---
+
+## ⭐ Support
+
+If you find this project useful, consider giving it a ⭐ on GitHub!
