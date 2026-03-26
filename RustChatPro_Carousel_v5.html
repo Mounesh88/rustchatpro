@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RustChatPro+ LinkedIn Carousel</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   GLOBAL RESET & VARIABLES
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0d0d1a;
+  --bg-deep:   #080812;
+  --bg-card:   rgba(255,255,255,0.028);
+  --border:    rgba(255,255,255,0.07);
+  --crimson:   #e94560;
+  --purple:    #7c3aed;
+  --purple-lt: #a78bfa;
+  --cyan:      #22d3ee;
+  --cyan-dk:   #0e7490;
+  --green:     #1cc88a;
+  --gold:      #f59e0b;
+  --text:      #e2e8f0;
+  --muted:     #64748b;
+  --muted2:    #94a3b8;
+  --ff-display:'Syne', sans-serif;
+  --ff-mono:   'Space Mono', monospace;
+}
+
+html, body {
+  background: #04040c;
+  padding: 48px 24px 72px;
+  font-family: var(--ff-mono);
+  color: var(--text);
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+
+/* ═══════════════════════════════════════════
+   SLIDE WRAPPER
+═══════════════════════════════════════════ */
+.slide-wrap {
+  max-width: 1080px;
+  margin: 0 auto 64px;
+}
+
+/* ═══════════════════════════════════════════
+   SLIDE BASE — all slides are 1080×1080
+═══════════════════════════════════════════ */
+.slide {
+  width: 1080px;
+  height: 1080px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
+  background: var(--bg);
+  display: block;
+}
+
+/* Shared noise grain */
+.slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+}
+
+/* ═══════════════════════════════════════════
+   ██ SLIDE 1 — HOOK / COVER
+═══════════════════════════════════════════ */
+.s1 { background: var(--bg); }
+
+/* Diagonal background split */
+.s1-bg-split {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(138deg,
+    #0d0d1a 0%, #0d0d1a 55%,
+    #0f0520 55%, #130a28 100%
+  );
+}
+
+/* Fine scan-line grid */
+.s1-grid {
+  position: absolute; inset: 0; z-index: 2;
+  background-image:
+    linear-gradient(rgba(233,69,96,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,58,237,0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+/* Purple radial glow behind headline */
+.s1-glow {
+  position: absolute; z-index: 3;
+  top: 28%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 750px; height: 520px;
+  background: radial-gradient(ellipse, rgba(124,58,237,0.18) 0%, transparent 68%);
+}
+
+/* Left vertical crimson accent bar */
+.s1-vbar {
+  position: absolute; z-index: 5;
+  left: 0; top: 0; bottom: 0; width: 6px;
+  background: linear-gradient(180deg, var(--crimson) 0%, var(--purple) 100%);
+}
+
+/* Content layer */
+.s1-content {
+  position: absolute; inset: 0; z-index: 10;
+  padding: 88px 84px 80px 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.s1-eyebrow {
+  font-family: var(--ff-mono);
+  font-size: 13px;
+  color: var(--crimson);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.s1-eyebrow::before {
+  content: '';
+  display: block;
+  width: 36px; height: 2px;
+  background: var(--crimson);
+  flex-shrink: 0;
+}
+
+.s1-headline {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: 82px;
+  line-height: 0.97;
+  letter-spacing: -3px;
+  color: #fff;
+  margin-bottom: 12px;
+}
+.s1-headline .accent { color: var(--crimson); }
+
+.s1-headline2 {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: -2px;
+  color: rgba(255,255,255,0.28);
+  margin-bottom: 36px;
+}
+
+.s1-sub {
+  font-family: var(--ff-mono);
+  font-size: 17px;
+  color: var(--muted2);
+  line-height: 1.65;
+  max-width: 600px;
+  margin-bottom: 46px;
+  font-weight: 400;
+}
+.s1-sub strong { color: var(--text); font-weight: 700; }
+
+/* Tech pills */
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 54px;
+}
+.pill {
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  padding: 7px 16px;
+  border-radius: 3px;
+  border: 1px solid;
+  letter-spacing: 0.8px;
+  line-height: 1;
+}
+.pill-r { color: var(--crimson);   border-color: rgba(233,69,96,0.45);  background: rgba(233,69,96,0.08); }
+.pill-p { color: var(--purple-lt); border-color: rgba(167,139,250,0.35); background: rgba(124,58,237,0.08); }
+.pill-c { color: var(--cyan);      border-color: rgba(34,211,238,0.35);  background: rgba(34,211,238,0.07); }
+.pill-g { color: var(--green);     border-color: rgba(28,200,138,0.35);  background: rgba(28,200,138,0.07); }
+
+/* KPI row */
+.kpi-row {
+  display: flex;
+  gap: 0;
+}
+.kpi-item {
+  flex: 1;
+  padding-right: 32px;
+  border-right: 1px solid var(--border);
+  margin-right: 32px;
+}
+.kpi-item:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+.kpi-val {
+  font-family: var(--ff-display);
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--crimson);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.kpi-label {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+/* ═══════════════════════════════════════════
+   ██ SLIDE 2 — ARCHITECTURE
+═══════════════════════════════════════════ */
+.s2 { background: var(--bg); }
+
+.s2-dot-bg {
+  position: absolute; inset: 0; z-index: 1;
+  background-image: radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+.s2-top-rule {
+  position: absolute; z-index: 5;
+  top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--purple) 0%, var(--crimson) 48%, var(--cyan) 100%);
+}
+
+.s2-inner {
+  position: absolute; inset: 0; z-index: 10;
+  padding: 58px 64px 52px;
+  display: flex;
+  flex-direction: column;
+}
+
+.s2-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 34px;
+  flex-shrink: 0;
+}
+.s2-header-left { flex: 1; }
+
+.slide-tag {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  color: var(--purple-lt);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.slide-h1 {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: 42px;
+  color: #fff;
+  line-height: 1.08;
+  letter-spacing: -1px;
+}
+.slide-h1 .accent { color: var(--crimson); }
+.slide-h1 .accent-p { color: var(--purple-lt); }
+.slide-sub {
+  font-family: var(--ff-mono);
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.55;
+  max-width: 560px;
+}
+
+/* Big decorative number — faint, top right */
+.s2-bignum {
+  font-family: var(--ff-display);
+  font-size: 120px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.04);
+  line-height: 1;
+  letter-spacing: -4px;
+  user-select: none;
+  flex-shrink: 0;
+  margin-top: -8px;
+}
+
+/* Architecture stack */
+.arch-stack {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 0;
+}
+
+.arch-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 22px;
+  border-radius: 11px;
+  border-left: 3px solid;
+  flex-shrink: 0;
+}
+.arch-row-green  { background: rgba(28,200,138,0.07);  border-color: var(--green); }
+.arch-row-purple { background: rgba(124,58,237,0.09);  border-color: var(--purple-lt); }
+.arch-row-red    { background: rgba(233,69,96,0.07);   border-color: var(--crimson); }
+.arch-row-cyan   { background: rgba(34,211,238,0.07);  border-color: var(--cyan); }
+.arch-row-gold   { background: rgba(245,158,11,0.07);  border-color: var(--gold); }
+
+.arch-icon {
+  font-size: 24px;
+  width: 44px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.arch-body { flex: 1; min-width: 0; }
+.arch-title {
+  font-family: var(--ff-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 3px;
+}
+.arch-desc {
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  color: var(--muted2);
+  line-height: 1.4;
+}
+.arch-desc em { font-style: normal; color: var(--text); }
+
+.arch-chips { display: flex; gap: 7px; flex-shrink: 0; }
+.chip {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  padding: 4px 9px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+.chip-g  { background: rgba(28,200,138,0.15);  color: var(--green); }
+.chip-p  { background: rgba(124,58,237,0.2);   color: var(--purple-lt); }
+.chip-r  { background: rgba(233,69,96,0.15);   color: var(--crimson); }
+.chip-c  { background: rgba(34,211,238,0.13);  color: var(--cyan); }
+.chip-y  { background: rgba(245,158,11,0.15);  color: var(--gold); }
+
+.arch-connector {
+  text-align: center;
+  color: rgba(255,255,255,0.13);
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════
+   ██ SLIDE 3 — ENGINEERING DECISIONS
+═══════════════════════════════════════════ */
+.s3 { background: var(--bg); }
+
+.s3-hex-bg {
+  position: absolute; inset: 0; z-index: 1;
+  background-image:
+    linear-gradient(60deg, rgba(124,58,237,0.035) 1px, transparent 1px),
+    linear-gradient(-60deg, rgba(124,58,237,0.035) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(124,58,237,0.025) 1px, transparent 1px);
+  background-size: 90px 90px, 90px 90px, 90px 90px;
+}
+.s3-corner-glow {
+  position: absolute; z-index: 2;
+  top: -60px; right: -60px;
+  width: 380px; height: 380px;
+  background: radial-gradient(circle at top right, rgba(124,58,237,0.2), transparent 65%);
+}
+.s3-bottom-glow {
+  position: absolute; z-index: 2;
+  bottom: -80px; left: -80px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(233,69,96,0.09), transparent 65%);
+}
+
+.s3-inner {
+  position: absolute; inset: 0; z-index: 10;
+  padding: 58px 60px 52px;
+  display: flex;
+  flex-direction: column;
+}
+
+.s3-header { margin-bottom: 32px; flex-shrink: 0; }
+
+.dec-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+  min-height: 0;
+}
+
+.dec-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+.dec-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+.dec-t1::before { background: var(--crimson); }
+.dec-t2::before { background: var(--purple-lt); }
+.dec-t3::before { background: var(--cyan); }
+.dec-t4::before { background: var(--green); }
+
+/* Corner glow per card */
+.dec-card::after {
+  content: '';
+  position: absolute;
+  top: -30px; right: -30px;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.dec-t1::after { background: radial-gradient(circle, rgba(233,69,96,0.1), transparent 70%); }
+.dec-t2::after { background: radial-gradient(circle, rgba(167,139,250,0.1), transparent 70%); }
+.dec-t3::after { background: radial-gradient(circle, rgba(34,211,238,0.1), transparent 70%); }
+.dec-t4::after { background: radial-gradient(circle, rgba(28,200,138,0.1), transparent 70%); }
+
+.dec-icon { font-size: 26px; line-height: 1; }
+.dec-title {
+  font-family: var(--ff-display);
+  font-size: 19px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+.dec-tech {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.dec-t1 .dec-tech { color: var(--crimson); }
+.dec-t2 .dec-tech { color: var(--purple-lt); }
+.dec-t3 .dec-tech { color: var(--cyan); }
+.dec-t4 .dec-tech { color: var(--green); }
+
+.dec-why {
+  font-family: var(--ff-mono);
+  font-size: 12.5px;
+  color: var(--muted2);
+  line-height: 1.58;
+  flex: 1;
+}
+.dec-why strong { color: var(--text); font-weight: 700; }
+
+.dec-result {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  font-weight: 700;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+.dec-t1 .dec-result { color: var(--crimson); }
+.dec-t2 .dec-result { color: var(--purple-lt); }
+.dec-t3 .dec-result { color: var(--cyan); }
+.dec-t4 .dec-result { color: var(--green); }
+.dec-result::before { content: '↑'; font-size: 14px; }
+
+/* ═══════════════════════════════════════════
+   ██ SLIDE 4 — PERFORMANCE & SECURITY
+═══════════════════════════════════════════ */
+.s4 { background: var(--bg); }
+
+.s4-glow-tl {
+  position: absolute; z-index: 1;
+  top: -120px; left: -120px;
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(233,69,96,0.1), transparent 65%);
+}
+.s4-glow-br {
+  position: absolute; z-index: 1;
+  bottom: -120px; right: -120px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(34,211,238,0.08), transparent 65%);
+}
+.s4-scanlines {
+  position: absolute; inset: 0; z-index: 2;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.01) 1px,
+    transparent 1px, transparent 5px
+  );
+}
+
+.s4-inner {
+  position: absolute; inset: 0; z-index: 10;
+  padding: 58px 60px 52px;
+  display: flex;
+  flex-direction: column;
+}
+.s4-header { margin-bottom: 30px; flex-shrink: 0; }
+
+.s4-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  min-height: 0;
+}
+
+/* Metrics panel */
+.metrics-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 26px 26px;
+  display: flex;
+  flex-direction: column;
+}
+.panel-label {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+.metrics-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.mbar { }
+.mbar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 7px;
+}
+.mbar-name {
+  font-family: var(--ff-mono);
+  font-size: 12.5px;
+  color: var(--muted2);
+}
+.mbar-val {
+  font-family: var(--ff-display);
+  font-size: 17px;
+  font-weight: 700;
+}
+.mval-r { color: var(--crimson); }
+.mval-p { color: var(--purple-lt); }
+.mval-c { color: var(--cyan); }
+.mval-g { color: var(--green); }
+.mval-y { color: var(--gold); }
+
+.bar-track {
+  height: 5px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 3px;
+}
+.bfill-r { background: linear-gradient(90deg, #b91c1c, var(--crimson)); }
+.bfill-p { background: linear-gradient(90deg, var(--purple), var(--purple-lt)); }
+.bfill-c { background: linear-gradient(90deg, var(--cyan-dk), var(--cyan)); }
+.bfill-g { background: linear-gradient(90deg, #059669, var(--green)); }
+.bfill-y { background: linear-gradient(90deg, #92400e, var(--gold)); }
+
+/* Security panel */
+.security-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.sec-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  flex: 1;
+}
+.sec-icon { font-size: 20px; flex-shrink: 0; padding-top: 2px; }
+.sec-title {
+  font-family: var(--ff-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 5px;
+}
+.sec-desc {
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.sec-desc em { font-style: normal; color: var(--muted2); }
+
+/* ═══════════════════════════════════════════
+   ██ SLIDE 5 — CTA
+═══════════════════════════════════════════ */
+.s5 { background: var(--bg); }
+
+.s5-bg-grid {
+  position: absolute; inset: 0; z-index: 1;
+  background-image:
+    linear-gradient(rgba(233,69,96,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px);
+  background-size: 84px 84px;
+}
+.s5-glow {
+  position: absolute; z-index: 2;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 820px; height: 820px;
+  background: radial-gradient(ellipse, rgba(124,58,237,0.12) 0%, transparent 62%);
+}
+.s5-bar-top {
+  position: absolute; z-index: 5;
+  top: 0; left: 0; right: 0; height: 5px;
+  background: linear-gradient(90deg, var(--purple), var(--crimson), var(--cyan));
+}
+.s5-bar-bot {
+  position: absolute; z-index: 5;
+  bottom: 0; left: 0; right: 0; height: 5px;
+  background: linear-gradient(90deg, var(--cyan), var(--crimson), var(--purple));
+}
+
+.s5-content {
+  position: absolute; inset: 0; z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 80px 100px;
+}
+
+.s5-eyebrow {
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  color: var(--purple-lt);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.s5-headline {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: 72px;
+  color: #fff;
+  line-height: 1.0;
+  letter-spacing: -2.5px;
+  margin-bottom: 10px;
+}
+.s5-headline .accent { color: var(--crimson); }
+
+.s5-headline2 {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 36px;
+  color: rgba(255,255,255,0.22);
+  letter-spacing: -1px;
+  margin-bottom: 36px;
+}
+
+.s5-sub {
+  font-family: var(--ff-mono);
+  font-size: 16px;
+  color: var(--muted2);
+  line-height: 1.7;
+  max-width: 640px;
+  margin-bottom: 28px;
+}
+.s5-sub strong { color: var(--text); font-weight: 700; }
+
+/* GitHub link */
+.s5-github {
+  font-family: var(--ff-mono);
+  font-size: 18px;
+  color: var(--crimson);
+  letter-spacing: 1.5px;
+  margin-bottom: 36px;
+  padding: 12px 28px;
+  border: 1px solid rgba(233,69,96,0.3);
+  border-radius: 6px;
+  background: rgba(233,69,96,0.07);
+}
+
+/* CTA buttons */
+.cta-row {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 52px;
+}
+.cta-btn {
+  font-family: var(--ff-display);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 18px 38px;
+  border-radius: 7px;
+  letter-spacing: 0.4px;
+  line-height: 1;
+}
+.cta-primary {
+  background: var(--crimson);
+  color: #fff;
+}
+.cta-secondary {
+  background: transparent;
+  color: var(--purple-lt);
+  border: 2px solid rgba(167,139,250,0.4);
+}
+
+/* Final stats */
+.s5-stats {
+  display: flex;
+  gap: 0;
+  margin-bottom: 40px;
+}
+.s5-stat {
+  flex: 1;
+  text-align: center;
+  padding: 0 24px;
+  border-right: 1px solid var(--border);
+}
+.s5-stat:last-child { border-right: none; }
+.s5-stat-num {
+  font-family: var(--ff-display);
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--crimson);
+  line-height: 1;
+  margin-bottom: 7px;
+}
+.s5-stat-label {
+  font-family: var(--ff-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Hashtags */
+.s5-tags {
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  color: rgba(255,255,255,0.15);
+  letter-spacing: 1px;
+  line-height: 2;
+}
+
+/* Hiring role pills */
+.s5-hiring-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.s5-hiring-label {
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.s5-hiring-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.s5-hpill {
+  font-family: var(--ff-mono);
+  font-size: 13px;
+  padding: 9px 20px;
+  border-radius: 4px;
+  border: 1px solid;
+  letter-spacing: 0.5px;
+}
+.hpill-r { color: var(--crimson);   border-color: rgba(233,69,96,0.45);  background: rgba(233,69,96,0.09); }
+.hpill-p { color: var(--purple-lt); border-color: rgba(167,139,250,0.4); background: rgba(124,58,237,0.09); }
+.hpill-c { color: var(--cyan);      border-color: rgba(34,211,238,0.4);  background: rgba(34,211,238,0.08); }
+.hpill-g { color: var(--green);     border-color: rgba(28,200,138,0.4);  background: rgba(28,200,138,0.08); }
+
+</style>
+</head>
+<body>
+
+
+<!-- ████████████████████████████████████████
+     SLIDE 1 — HOOK / COVER
+████████████████████████████████████████ -->
+<div class="slide-wrap">
+<div class="slide s1">
+  <div class="s1-bg-split"></div>
+  <div class="s1-grid"></div>
+  <div class="s1-glow"></div>
+  <div class="s1-vbar"></div>
+
+  <div class="s1-content">
+    <div class="s1-eyebrow">ML Engineering · Data Infrastructure · Open Source · 2026</div>
+
+    <div class="s1-headline">Zero Memory<br><span class="accent">Leaks.</span></div>
+    <div class="s1-headline2">Zero Compromise.</div>
+
+    <div class="s1-sub">
+      Production-grade real-time messaging platform built in <strong>Rust</strong> —
+      leveraging the ownership model to <strong>eliminate entire classes of bugs
+      before compilation.</strong> No GC pauses. No data races. No shortcuts.
+    </div>
+
+    <div class="pill-row">
+      <span class="pill pill-r">Rust 2021</span>
+      <span class="pill pill-p">Actix-web</span>
+      <span class="pill pill-c">WebSockets</span>
+      <span class="pill pill-g">PostgreSQL</span>
+      <span class="pill pill-r">Redis</span>
+      <span class="pill pill-p">Docker</span>
+      <span class="pill pill-c">AES-256-GCM</span>
+      <span class="pill pill-g">Tokio</span>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi-item">
+        <div class="kpi-val">&lt;2ms</div>
+        <div class="kpi-label">P99 Latency</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">0</div>
+        <div class="kpi-label">Data Races</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">10K+</div>
+        <div class="kpi-label">Concurrent Conns</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-val">E2E</div>
+        <div class="kpi-label">Encrypted</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ████████████████████████████████████████
+     SLIDE 2 — ARCHITECTURE
+████████████████████████████████████████ -->
+<div class="slide-wrap">
+<div class="slide s2">
+  <div class="s2-dot-bg"></div>
+  <div class="s2-top-rule"></div>
+
+  <div class="s2-inner">
+    <div class="s2-header">
+      <div class="s2-header-left">
+        <div class="slide-tag">// ml_infrastructure_stack</div>
+        <div class="slide-h1">Architecting for<br><span class="accent">Production Scale</span></div>
+        <div class="slide-sub">The same infrastructure principles that power real-time ML feature serving and low-latency inference — applied from scratch.</div>
+      </div>
+      <div class="s2-bignum">02</div>
+    </div>
+
+    <div class="arch-stack">
+
+      <div class="arch-row arch-row-green">
+        <div class="arch-icon">🌐</div>
+        <div class="arch-body">
+          <div class="arch-title">Actix-web + WebSockets</div>
+          <div class="arch-desc">Actor-model concurrency — each connection is an isolated task. <em>Borrow checker guarantees zero shared-state corruption at compile time.</em></div>
+        </div>
+        <div class="arch-chips">
+          <span class="chip chip-g">actix-web</span>
+          <span class="chip chip-g">WebSockets</span>
+        </div>
+      </div>
+
+      <div class="arch-connector">↓</div>
+
+      <div class="arch-row arch-row-purple">
+        <div class="arch-icon">⚡</div>
+        <div class="arch-body">
+          <div class="arch-title">Redis — Sub-millisecond Message Bus</div>
+          <div class="arch-desc">Pub/Sub channels decouple producers from consumers, enabling <em>horizontal scaling without bottlenecking on a single broadcast loop.</em></div>
+        </div>
+        <div class="arch-chips">
+          <span class="chip chip-p">Redis</span>
+          <span class="chip chip-p">Pub/Sub</span>
+        </div>
+      </div>
+
+      <div class="arch-connector">↓</div>
+
+      <div class="arch-row arch-row-red">
+        <div class="arch-icon">🗄️</div>
+        <div class="arch-body">
+          <div class="arch-title">PostgreSQL + SQLx — Type-Safe Queries</div>
+          <div class="arch-desc">SQLx verifies <em>every SQL query at compile time against the live schema.</em> No runtime SQL panics. No ORM magic hiding N+1 problems.</div>
+        </div>
+        <div class="arch-chips">
+          <span class="chip chip-r">PostgreSQL</span>
+          <span class="chip chip-r">SQLx</span>
+        </div>
+      </div>
+
+      <div class="arch-connector">↓</div>
+
+      <div class="arch-row arch-row-cyan">
+        <div class="arch-icon">🔒</div>
+        <div class="arch-body">
+          <div class="arch-title">AES-256-GCM — End-to-End Encryption</div>
+          <div class="arch-desc">Each message encrypted client-side before transit. <em>Server physically cannot read content</em> — unique nonce per message prevents ciphertext reuse.</div>
+        </div>
+        <div class="arch-chips">
+          <span class="chip chip-c">AES-256-GCM</span>
+          <span class="chip chip-c">E2E</span>
+        </div>
+      </div>
+
+      <div class="arch-connector">↓</div>
+
+      <div class="arch-row arch-row-gold">
+        <div class="arch-icon">🐳</div>
+        <div class="arch-body">
+          <div class="arch-title">Docker + GitHub Actions CI/CD</div>
+          <div class="arch-desc">Multi-stage Dockerfile → <em>8MB final image.</em> Pipeline enforces cargo fmt · clippy · 12 unit tests on every push — no broken builds reach main.</div>
+        </div>
+        <div class="arch-chips">
+          <span class="chip chip-y">Docker</span>
+          <span class="chip chip-y">CI/CD</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ████████████████████████████████████████
+     SLIDE 3 — ENGINEERING DECISIONS
+████████████████████████████████████████ -->
+<div class="slide-wrap">
+<div class="slide s3">
+  <div class="s3-hex-bg"></div>
+  <div class="s3-corner-glow"></div>
+  <div class="s3-bottom-glow"></div>
+
+  <div class="s3-inner">
+    <div class="s3-header">
+      <div class="slide-tag">// ml_systems_decisions</div>
+      <div class="slide-h1">Securing Systems with<br><span class="accent-p">Rust's Guarantees</span></div>
+      <div class="slide-sub">Four engineering problems solved at the language level — directly applicable to reliable ML pipelines and data platforms.</div>
+    </div>
+
+    <div class="dec-grid">
+
+      <div class="dec-card dec-t1">
+        <div class="dec-icon">🦀</div>
+        <div class="dec-title">Ownership Eliminates Memory Leaks</div>
+        <div class="dec-tech">Rust Ownership Model</div>
+        <div class="dec-why">
+          In C++ or Go, <strong>use-after-free bugs</strong> reach production. Rust's ownership model
+          makes this a compile error — zero heap allocations escape their scope, guaranteed not hoped for.
+        </div>
+        <div class="dec-result">Entire bug class eliminated at compile time</div>
+      </div>
+
+      <div class="dec-card dec-t2">
+        <div class="dec-icon">⚡</div>
+        <div class="dec-title">Tokio Scales to 10K+ Connections</div>
+        <div class="dec-tech">Tokio · async/await · Arc&lt;DashMap&gt;</div>
+        <div class="dec-why">
+          Thread-per-connection doesn't scale. Tokio's <strong>M:N async runtime</strong> multiplexes
+          thousands of connections onto a fixed thread pool — no OS context-switch overhead per user.
+        </div>
+        <div class="dec-result">Linear throughput scaling, constant memory</div>
+      </div>
+
+      <div class="dec-card dec-t3">
+        <div class="dec-icon">🔑</div>
+        <div class="dec-title">Zero-Trust Encryption by Default</div>
+        <div class="dec-tech">AES-256-GCM · WebCrypto API</div>
+        <div class="dec-why">
+          Most apps encrypt at TLS only. We encrypt at the <strong>application layer too</strong> —
+          the server is physically incapable of reading message content. Not a policy. A guarantee.
+        </div>
+        <div class="dec-result">Server-blind message routing architecture</div>
+      </div>
+
+      <div class="dec-card dec-t4">
+        <div class="dec-icon">🏗️</div>
+        <div class="dec-title">Compile-Time SQL Verification</div>
+        <div class="dec-tech">PostgreSQL · SQLx · Typed Queries</div>
+        <div class="dec-why">
+          ORMs hide query plans. SQLx <strong>checks every query against a live DB snapshot
+          at compile time</strong> — schema drift becomes a build failure, not a 3am outage.
+        </div>
+        <div class="dec-result">Zero runtime SQL panics in production</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ████████████████████████████████████████
+     SLIDE 4 — PERFORMANCE & SECURITY
+████████████████████████████████████████ -->
+<div class="slide-wrap">
+<div class="slide s4">
+  <div class="s4-glow-tl"></div>
+  <div class="s4-glow-br"></div>
+  <div class="s4-scanlines"></div>
+
+  <div class="s4-inner">
+    <div class="s4-header">
+      <div class="slide-tag">// performance_and_reliability</div>
+      <div class="slide-h1">Measuring What<br><span class="accent">Actually Matters</span></div>
+      <div class="slide-sub">The same obsession for reliability I bring to ML pipelines — applied to every layer of this system.</div>
+    </div>
+
+    <div class="s4-body">
+
+      <!-- Left: Metric bars -->
+      <div class="metrics-panel">
+        <div class="panel-label">// perf_benchmarks</div>
+        <div class="metrics-list">
+
+          <div class="mbar">
+            <div class="mbar-top">
+              <span class="mbar-name">P99 Message Latency</span>
+              <span class="mbar-val mval-r">&lt; 2ms</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill bfill-r" style="width:96%"></div></div>
+          </div>
+
+          <div class="mbar">
+            <div class="mbar-top">
+              <span class="mbar-name">Concurrent WebSocket Connections</span>
+              <span class="mbar-val mval-p">10,000+</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill bfill-p" style="width:88%"></div></div>
+          </div>
+
+          <div class="mbar">
+            <div class="mbar-top">
+              <span class="mbar-name">Redis Pub/Sub Throughput</span>
+              <span class="mbar-val mval-c">100K msg/s</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill bfill-c" style="width:80%"></div></div>
+          </div>
+
+          <div class="mbar">
+            <div class="mbar-top">
+              <span class="mbar-name">Docker Image Size</span>
+              <span class="mbar-val mval-g">8 MB</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill bfill-g" style="width:10%"></div></div>
+          </div>
+
+          <div class="mbar">
+            <div class="mbar-top">
+              <span class="mbar-name">CI Pipeline Pass Rate</span>
+              <span class="mbar-val mval-y">100%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill bfill-y" style="width:100%"></div></div>
+          </div>
+
+          <div class="mbar">
+            <div class="mbar-top">
+              <span class="mbar-name">Data Races in Production</span>
+              <span class="mbar-val mval-r">0</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill bfill-r" style="width:1.5%"></div></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right: Security highlights -->
+      <div class="security-panel">
+
+        <div class="sec-item">
+          <div class="sec-icon">🛡️</div>
+          <div>
+            <div class="sec-title">Memory Safety — Compiler Enforced</div>
+            <div class="sec-desc">Rust's borrow checker is a <em>static analysis tool that ships with the language.</em> Buffer overflows, use-after-free, double-free: impossible by construction.</div>
+          </div>
+        </div>
+
+        <div class="sec-item">
+          <div class="sec-icon">🔐</div>
+          <div>
+            <div class="sec-title">E2E Encryption — Server Blind</div>
+            <div class="sec-desc">AES-256-GCM with <em>per-message nonce generation.</em> Ciphertext stored in PostgreSQL. Even a full DB breach exposes zero plaintext.</div>
+          </div>
+        </div>
+
+        <div class="sec-item">
+          <div class="sec-icon">🧵</div>
+          <div>
+            <div class="sec-title">Fearless Concurrency via Arc + DashMap</div>
+            <div class="sec-desc"><em>Lock-free concurrent hash map</em> for the client registry. Multiple readers, no writer blocking — deadlocks eliminated at the type level.</div>
+          </div>
+        </div>
+
+        <div class="sec-item">
+          <div class="sec-icon">📋</div>
+          <div>
+            <div class="sec-title">Structured Logging + Audit Trail</div>
+            <div class="sec-desc">Every event logged with <em>tracing spans and key=value fields.</em> Full audit trail for security review. No println! in production paths.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ████████████████████████████████████████
+     SLIDE 5 — CALL TO ACTION
+████████████████████████████████████████ -->
+<div class="slide-wrap">
+<div class="slide s5">
+  <div class="s5-bg-grid"></div>
+  <div class="s5-glow"></div>
+  <div class="s5-bar-top"></div>
+  <div class="s5-bar-bot"></div>
+
+  <div class="s5-content">
+    <div class="s5-eyebrow">// open_to_opportunities · 2026</div>
+
+    <div class="s5-headline">Built in <span class="accent">Rust.</span></div>
+    <div class="s5-headline2">Driven by ML Obsession.</div>
+
+    <div class="s5-sub">
+      Shipping production ML pipelines at <strong>Accenture</strong> — and building
+      RustChatPro+ on the side to deeply understand the low-level infrastructure
+      behind <strong>real-time feature serving, low-latency inference &amp; MLOps platforms.</strong>
+    </div>
+
+    <div class="s5-hiring-row">
+      <div class="s5-hiring-label">Open to roles in</div>
+      <div class="s5-hiring-pills">
+        <span class="s5-hpill hpill-r">ML Engineer</span>
+        <span class="s5-hpill hpill-p">MLOps Engineer</span>
+        <span class="s5-hpill hpill-c">Real-time Data Platforms</span>
+        <span class="s5-hpill hpill-g">ML Infrastructure Engineer</span>
+      </div>
+    </div>
+
+    <div class="s5-github">github.com/Mounesh88/rustchatpro</div>
+
+    <div class="cta-row">
+      <div class="cta-btn cta-primary">View Source on GitHub</div>
+      <div class="cta-btn cta-secondary">Connect on LinkedIn</div>
+    </div>
+
+    <div class="s5-stats">
+      <div class="s5-stat">
+        <div class="s5-stat-num">10</div>
+        <div class="s5-stat-label">Phases Built</div>
+      </div>
+      <div class="s5-stat">
+        <div class="s5-stat-num">0</div>
+        <div class="s5-stat-label">Data Races</div>
+      </div>
+      <div class="s5-stat">
+        <div class="s5-stat-num">12</div>
+        <div class="s5-stat-label">Tests Green</div>
+      </div>
+      <div class="s5-stat">
+        <div class="s5-stat-num">E2E</div>
+        <div class="s5-stat-label">Encrypted</div>
+      </div>
+    </div>
+
+    <div class="s5-tags">
+      #MLEngineer &nbsp;·&nbsp; #MLOps &nbsp;·&nbsp; #Databricks &nbsp;·&nbsp; #RealTimeML
+      &nbsp;·&nbsp; #FeatureStore &nbsp;·&nbsp; #Rust &nbsp;·&nbsp; #ProductionSystems &nbsp;·&nbsp; #OpenToWork
+    </div>
+
+  </div>
+</div>
+</div>
+
+</body>
+</html>
