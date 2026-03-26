@@ -92,14 +92,14 @@ pub async fn run_server_with_state(
     // HTTP listener — main task
     loop {
         match http_listener.accept().await {
-            Ok((mut stream, peer_addr)) => {
+            Ok((stream, peer_addr)) => {
                 info!(
                     peer_addr = %peer_addr,
                     protocol = "http",
                     "new connection"
                 );
                 tokio::spawn(async move {
-                    if let Err(e) = serve_html(&mut stream).await {
+                    if let Err(e) = serve_http(stream).await {
                         warn!(error = %e, "HTTP error");
                     }
                 });
@@ -109,24 +109,79 @@ pub async fn run_server_with_state(
     }
 }
 
-async fn serve_html(
-    stream: &mut tokio::net::TcpStream
+async fn serve_http(
+    mut stream: tokio::net::TcpStream
 ) -> Result<()> {
-    let mut buf = vec![0u8; 1024];
-    let _ = stream.read(&mut buf).await?;
+    let mut buf = vec![0u8; 4096];
+    let n = stream.read(&mut buf).await?;
+    
+    if n == 0 {
+        return Ok(());
+    }
 
-    let html = include_str!("../static/index.html");
-    let response = format!(
-        "HTTP/1.1 200 OK\r\n\
-         Content-Type: text/html; charset=utf-8\r\n\
-         Content-Length: {}\r\n\
-         Cache-Control: no-cache\r\n\
-         Connection: close\r\n\
-         \r\n\
-         {}",
-        html.len(),
-        html
-    );
+    let request_str = String::from_utf8_lossy(&buf[..n]);
+    
+    // Parse the HTTP request line
+    let request_line = match request_str.lines().next() {
+        Some(line) => line,
+        None => {
+            send_404(&mut stream).await?;
+            return Ok(());
+        }
+    };
+
+    // Extract the path from "GET /path HTTP/1.1"
+    let parts: Vec<&str> = request_line.split_whitespace().collect();
+    if parts.len() < 2 {
+        send_404(&mut stream).await?;
+        return Ok(());
+    }
+
+    let request_path = parts[1];
+    
+    // Determine file to serve
+    let file_path = if request_path == "/" {
+        "static/index.html".to_string()
+    } else {
+        format!("static{}", request_path)
+    };
+
+    // Sanitize path to prevent directory traversal
+    let file_path = file_path.replace("../", "").replace("..\\", "");
+
+    // Try to read the file
+    match std::fs::read_to_string(&file_path) {
+        Ok(content) => {
+            let response = format!(
+                "HTTP/1.1 200 OK\r\n\
+                 Content-Type: text/html; charset=utf-8\r\n\
+                 Content-Length: {}\r\n\
+                 Cache-Control: no-cache, no-store, must-revalidate\r\n\
+                 Pragma: no-cache\r\n\
+                 Expires: 0\r\n\
+                 Connection: close\r\n\
+                 \r\n\
+                 {}",
+                content.len(),
+                content
+            );
+            stream.write_all(response.as_bytes()).await?;
+        }
+        Err(_) => {
+            send_404(&mut stream).await?;
+        }
+    }
+    stream.flush().await?;
+    Ok(())
+}
+
+async fn send_404(stream: &mut tokio::net::TcpStream) -> Result<()> {
+    let response = "HTTP/1.1 404 Not Found\r\n\
+                    Content-Type: text/plain\r\n\
+                    Content-Length: 9\r\n\
+                    Connection: close\r\n\
+                    \r\n\
+                    Not Found";
     stream.write_all(response.as_bytes()).await?;
     stream.flush().await?;
     Ok(())
